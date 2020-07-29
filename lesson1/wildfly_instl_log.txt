@@ -1,0 +1,102 @@
+Microsoft Windows [Version 10.0.18362.959]
+(c) Корпорация Майкрософт (Microsoft Corporation), 2019. Все права защищены.
+
+CWindowssystem32cd CProgram Fileswildfly-20.0.1.Finalbin
+
+CProgram Fileswildfly-20.0.1.Finalbinadd-user.bat
+
+What type of user do you wish to add
+ a) Management User (mgmt-users.properties)
+ b) Application User (application-users.properties)
+(a)
+
+Enter the details of the new user to add.
+Using realm 'ManagementRealm' as discovered from the existing property files.
+Username  admin
+User 'admin' already exists and is disabled, would you like to...
+ a) Update the existing user password and roles
+ b) Enable the existing user
+ c) Type a new username
+(a)
+Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
+ - The password should be different from the username
+ - The password should not be one of the following restricted values {root, admin, administrator}
+ - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
+Password 
+WFLYDM0098 The password should be different from the username
+Are you sure you want to use the password entered yesno yes
+Re-enter Password 
+What groups do you want this user to belong to (Please enter a comma separated list, or leave blank for none)[  ]
+Updated user 'admin' to file 'CProgram Fileswildfly-20.0.1.Finalstandaloneconfigurationmgmt-users.properties'
+Updated user 'admin' to file 'CProgram Fileswildfly-20.0.1.Finaldomainconfigurationmgmt-users.properties'
+Updated user 'admin' with groups  to file 'CProgram Fileswildfly-20.0.1.Finalstandaloneconfigurationmgmt-groups.properties'
+Updated user 'admin' with groups  to file 'CProgram Fileswildfly-20.0.1.Finaldomainconfigurationmgmt-groups.properties'
+Is this new user going to be used for one AS process to connect to another AS process
+e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+yesno yes
+To represent the user add the following to the server-identities definition secret value=YWRtaW4= 
+Для продолжения нажмите любую клавишу . . .
+
+CProgram Fileswildfly-20.0.1.Finalbinstandalone.bat
+Calling CProgram Fileswildfly-20.0.1.Finalbinstandalone.conf.bat
+Setting JAVA property to CProgram FilesJavajdk1.8.0_221binjava
+===============================================================================
+
+  JBoss Bootstrap Environment
+
+  JBOSS_HOME CProgram Fileswildfly-20.0.1.Final
+
+  JAVA CProgram FilesJavajdk1.8.0_221binjava
+
+  JAVA_OPTS -Dprogram.name=standalone.bat -Xms64M -Xmx512M -XXMetaspaceSize=96M -XXMaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman 
+
+===============================================================================
+
+124324,881 INFO  [org.jboss.modules] (main) JBoss Modules version 1.10.1.Final
+124326,544 INFO  [org.jboss.msc] (main) JBoss MSC version 1.4.11.Final
+124326,563 INFO  [org.jboss.threads] (main) JBoss Threads version 2.3.3.Final
+124326,777 INFO  [org.jboss.as] (MSC service thread 1-2) WFLYSRV0049 WildFly Full 20.0.1.Final (WildFly Core 12.0.3.Final) starting
+124328,393 INFO  [org.wildfly.security] (ServerService Thread Pool -- 28) ELY00001 WildFly Elytron version 1.12.1.Final
+124329,564 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028 Attribute 'security-realm' in the resource at address 'core-service=managementmanagement-interface=http-interface' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+124329,605 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 12) WFLYCTL0028 Attribute 'security-realm' in the resource at address 'subsystem=undertowserver=default-serverhttps-listener=https' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+124329,758 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039 Creating http management service using socket-binding (management-http)
+124329,802 INFO  [org.xnio] (MSC service thread 1-2) XNIO version 3.8.1.Final
+124329,818 INFO  [org.xnio.nio] (MSC service thread 1-2) XNIO NIO Implementation Version 3.8.1.Final
+124329,983 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 74) WFLYTX0013 The node-identifier attribute on the subsystem=transactions is set to the default value. This is a danger for environments running multiple servers. Please make sure the attribute value is unique.
+124330,006 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 52) WFLYCLINF0001 Activating Infinispan subsystem.
+124330,000 INFO  [org.wildfly.extension.microprofile.config.smallrye._private] (ServerService Thread Pool -- 61) WFLYCONF0001 Activating WildFly MicroProfile Config Subsystem
+124330,015 INFO  [org.wildfly.extension.microprofile.jwt.smallrye._private] (ServerService Thread Pool -- 63) WFLYJWT0001 Activating WildFly MicroProfile JWT Subsystem
+124330,033 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 66) WFLYNAM0001 Activating Naming Subsystem
+124330,039 INFO  [org.jboss.as.jaxrs] (ServerService Thread Pool -- 54) WFLYRS0016 RESTEasy version 3.12.1.Final
+124330,052 INFO  [org.jboss.as.security] (ServerService Thread Pool -- 72) WFLYSEC0002 Activating Security Subsystem
+124330,059 INFO  [org.wildfly.extension.microprofile.health.smallrye] (ServerService Thread Pool -- 62) WFLYHEALTH0001 Activating Eclipse MicroProfile Health Subsystem
+124330,062 INFO  [org.wildfly.extension.microprofile.opentracing] (ServerService Thread Pool -- 65) WFLYTRACEXT0001 Activating MicroProfile OpenTracing Subsystem
+124330,064 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 76) WFLYWS0002 Activating WebServices Extension
+124330,098 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 53) WFLYIO001 Worker 'default' has auto-configured to 16 IO threads with 128 max task threads based on your 8 available processors
+124330,117 INFO  [org.wildfly.extension.microprofile.metrics.smallrye] (ServerService Thread Pool -- 64) WFLYMETRICS0001 Activating Eclipse MicroProfile Metrics Subsystem
+124330,133 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 59) WFLYJSF0007 Activated the following JSF Implementations [main]
+124330,206 INFO  [org.jboss.as.connector] (MSC service thread 1-4) WFLYJCA0009 Starting JCA Subsystem (WildFlyIronJacamar 1.4.22.Final)
+124330,226 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-1) WFLYUT0003 Undertow 2.1.3.Final starting
+124330,266 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 44) WFLYJCA0004 Deploying JDBC-compliant driver class org.h2.Driver (version 1.4)
+124330,318 INFO  [org.jboss.as.security] (MSC service thread 1-4) WFLYSEC0001 Current PicketBox version=5.0.3.Final-redhat-00005
+124330,408 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-5) WFLYJCA0018 Started Driver service with driver-name = h2
+124330,441 INFO  [org.jboss.as.naming] (MSC service thread 1-1) WFLYNAM0003 Starting Naming Service
+124330,463 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-8) WFLYMAIL0001 Bound mail session [javajbossmailDefault]
+124330,584 INFO  [org.jboss.remoting] (MSC service thread 1-8) JBoss Remoting version 5.0.18.Final
+124330,678 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 75) WFLYUT0014 Creating file handler for path 'CProgram Fileswildfly-20.0.1.Finalwelcome-content' with options [directory-listing 'false', follow-symlink 'false', case-sensitive 'true', safe-symlink-paths '[]']
+124330,913 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0012 Started server default-server.
+124330,922 INFO  [org.jboss.as.ejb3] (MSC service thread 1-4) WFLYEJB0481 Strict pool slsb-strict-max-pool is using a max instance size of 128 (per class), which is derived from thread worker pool sizing.
+124330,932 INFO  [org.jboss.as.ejb3] (MSC service thread 1-5) WFLYEJB0482 Strict pool mdb-strict-max-pool is using a max instance size of 32 (per class), which is derived from the number of CPUs on this host.
+124330,940 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-4) WFLYUT0018 Host default-host starting
+124331,647 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0006 Undertow HTTP listener default listening on 127.0.0.18080
+124331,790 INFO  [org.jboss.as.ejb3] (MSC service thread 1-1) WFLYEJB0493 EJB subsystem suspension complete
+124331,820 INFO  [org.jboss.as.patching] (MSC service thread 1-3) WFLYPAT0050 WildFly Full cumulative patch ID is base, one-off patches include none
+124331,858 WARN  [org.jboss.as.domain.management.security] (MSC service thread 1-4) WFLYDM0111 Keystore CProgram Fileswildfly-20.0.1.Finalstandaloneconfigurationapplication.keystore not found, it will be auto generated on first use with a self signed certificate for host localhost
+124331,884 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-1) WFLYDS0013 Started FileSystemDeploymentService for directory CProgram Fileswildfly-20.0.1.Finalstandalonedeployments
+124331,984 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-1) WFLYJCA0001 Bound data source [javajbossdatasourcesExampleDS]
+124333,068 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-5) WFLYUT0006 Undertow HTTPS listener https listening on 127.0.0.18443
+124333,237 INFO  [org.jboss.ws.common.management] (MSC service thread 1-6) JBWS022052 Starting JBossWS 5.4.1.Final (Apache CXF 3.3.6)
+124333,475 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212 Resuming server
+124333,479 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025 WildFly Full 20.0.1.Final (WildFly Core 12.0.3.Final) started in 9488ms - Started 314 of 580 services (370 services are lazy, passive or on-demand)
+124333,485 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060 Http management interface listening on http127.0.0.19990management
+124333,490 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051 Admin console listening on http127.0.0.19990
