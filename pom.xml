@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>lesson1</module>
+        <module>q_app</module>
     </modules>
 
 </project>
