@@ -26,13 +26,13 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <h:link styleClass="nav-link" value="MAIN" outcome="index"/>
                 </li>
                 <li class="nav-item">
                     <h:link styleClass="nav-link" value="BRANDS" outcome="brands"/>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <h:link styleClass="nav-link" value="CATEGORIES" outcome="categories"/>
                 </li>
             </ul>
@@ -41,39 +41,31 @@
 
     <div class="container">
         <div class="row py-2">
-            <h:form id="productsForm">
+            <h:form id="categoriesForm">
                 <div class="col-12">
-                    <h:commandButton value="Add product" styleClass="btn btn-primary"
-                                     action="#{productController.createProduct()}"/>
+                    <h:commandButton value="Add category" styleClass="btn btn-primary"
+                                     action="#{categoryController.createCategory()}"/>
                 </div>
 
                 <div class="col-12">
-                    <h:dataTable value="#{productController.allProducts}"
+                    <h:dataTable value="#{categoryController.allCategories}"
                                  styleClass="table table-bordered my-2"
-                                 var="prod">
+                                 var="cat">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
-                            #{prod.id}
+                            #{cat.id}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Name</f:facet>
-                            #{prod.name}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Description</f:facet>
-                            #{prod.description}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Price</f:facet>
-                            #{prod.price}
+                            <f:facet name="header">Title</f:facet>
+                            #{cat.title}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>
                             <h:commandButton value="Edit" styleClass="btn btn-success"
-                                             action="#{productController.editProduct(prod)}"/>
+                                             action="#{categoryController.editCategory(cat)}"/>
                             <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{productController.deleteProduct(prod)}">
-                                <f:ajax event="click" render="productsForm"/>
+                                             action="#{categoryController.deleteCategory(cat)}">
+                                <f:ajax event="click" render="categoriesForm"/>
                             </h:commandButton>
                         </h:column>
                     </h:dataTable>

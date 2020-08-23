@@ -40,28 +40,29 @@ public class ProductRepository {
     }
 
     public void update(Product product) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement("update products set name = ?, description = ?, price = ? ;")){
+        try(PreparedStatement preparedStatement = connection.prepareStatement("update products set name = ?, description = ?, price = ? where id = ?;")){
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setDouble(3, product.getPrice());
+            preparedStatement.setLong(4, product.getId());
             preparedStatement.execute();
         }
     }
 
-    public void delete(int id) throws SQLException {
+    public void delete(long id) throws SQLException {
         try(PreparedStatement preparedStatement = connection.prepareStatement("delete from products where id = ? ;")){
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             preparedStatement.execute();
         }
     }
 
-    public Product findById(int id) throws SQLException {
+    public Product findById(long id) throws SQLException {
         try(PreparedStatement preparedStatement = connection.prepareStatement("select id,name, description, price where id = ?;")) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
-                return new Product(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4));
+                return new Product(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4));
             }
         }
         return null;
@@ -73,7 +74,7 @@ public class ProductRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
-                productList.add(new Product(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4)));
+                productList.add(new Product(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4)));
             }
         }
         return productList;
