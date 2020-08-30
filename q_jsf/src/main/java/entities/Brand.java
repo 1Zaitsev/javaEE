@@ -1,14 +1,22 @@
 package entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
+@Entity
+@Table(name = "brands")
 public class Brand  implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
 
     private String description;
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products;
 
     public Brand(Long id, String title, String description) {
         this.id = id;

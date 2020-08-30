@@ -11,6 +11,7 @@
 
     <modules>
         <module>q_app</module>
+        <module>q_jsf</module>
     </modules>
 
 </project>
