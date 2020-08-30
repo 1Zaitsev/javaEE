@@ -1,66 +1,43 @@
 package repsitries;
 
 import entities.Brand;
-import entities.Product;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
 @Named
 public class BrandRepository {
 
-    private Connection connection;
+    @PersistenceContext(unitName = "ds")
+    private EntityManager entityManager;
 
-    @Inject
-    private ServletContext context;
-
-    @PostConstruct
-    public void init(){
-        this.connection = (Connection) context.getAttribute("connection");
+    @Transactional
+    public void insert(Brand brand){
+        entityManager.persist(brand);
     }
 
-    public void insert(Brand brand) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement("insert into brands (title, description) values (?, ?);")){
-            preparedStatement.setString(1, brand.getTitle());
-            preparedStatement.setString(2, brand.getDescription());
-            preparedStatement.execute();
-        }
+    @Transactional
+    public void update(Brand brand){
+        entityManager.merge(brand);
     }
 
-    public void update(Brand brand) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("update brands set title = ?, description = ? where id = ?;")) {
-            preparedStatement.setString(1, brand.getTitle());
-            preparedStatement.setString(2, brand.getDescription());
-            preparedStatement.setLong(3, brand.getId());
-            preparedStatement.execute();
-        }
+    @Transactional
+    public void delete(long id){
+        Brand brand = entityManager.find(Brand.class, id);
+        if(brand != null)
+            entityManager.remove(brand);
     }
 
-    public void delete(Long id) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement("delete from brands where id = ?;")) {
-            preparedStatement.setLong(1, id);
-        }
+    public Brand findById(long id){
+        return entityManager.find(Brand.class, id);
     }
 
-    public List<Brand> findAll() throws SQLException {
-        List<Brand> brandList = new ArrayList<>();
-        try(PreparedStatement preparedStatement = connection.prepareStatement("select id, title, description from brands;")){
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()){
-                brandList.add(new Brand(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3)));
-            }
-        }
-        return brandList;
+    public List<Brand> findAll(){
+        return entityManager.createQuery("from Brand", Brand.class).getResultList();
     }
 }

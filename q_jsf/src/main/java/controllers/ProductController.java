@@ -1,6 +1,10 @@
 package controllers;
 
+import entities.Brand;
+import entities.Category;
 import entities.Product;
+import repsitries.BrandRepository;
+import repsitries.CategoryRepository;
 import repsitries.ProductRepository;
 
 import javax.enterprise.context.SessionScoped;
@@ -9,6 +13,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 
 @SessionScoped
 @Named
@@ -16,6 +21,13 @@ public class ProductController implements Serializable {
 
     @Inject
     private ProductRepository productRepository;
+    @Inject
+    private CategoryRepository categoryRepository;
+    @Inject
+    private BrandRepository brandRepository;
+
+
+
 
     private Product product;
 
@@ -52,5 +64,13 @@ public class ProductController implements Serializable {
             productRepository.insert(product);
         }
         return "/index.xhtml?faces-redirect=true";
+    }
+
+    public List<Category> getAllCategories(){
+        return categoryRepository.findAll();
+    }
+
+    public List<Brand> getAllBrands(){
+        return brandRepository.findAll();
     }
 }
